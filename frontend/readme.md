@@ -7,12 +7,12 @@ Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votr
 
 ## Instructions pour lancer le frontend
 
-### Étape 1 : Installer les dépendances
+### Installer les dépendances
 Dans le répertoire `frontend` (où se trouve le code React), exécutez la commande :
 
-"npm install"
+`npm install`
 
 Une fois installé il est possible de lancer le frontend avec la commande :
 
-"npm start"
+`npm start`
 
