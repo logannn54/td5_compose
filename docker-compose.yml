@@ -15,7 +15,7 @@ services:
       - backend-network
       - app-network
     depends_on:
-      - database 
+      - database
 
   frontend:
     build:
@@ -26,7 +26,7 @@ services:
       - "3000:80"
     container_name: frontend
     networks:
-      - app-network 
+      - app-network
     depends_on:
       - backend
 
@@ -38,11 +38,11 @@ services:
     container_name: sqlite
     volumes:
       - db-data:/data
-      - ./database/init.sql:/data/init.sql 
+      - ./database/init.sql:/data/init.sql
     entrypoint: |
       sh -c "
-        sqlite3 /data/database.db < /data/init.sql && 
-        tail -f /dev/null" 
+        sqlite3 /data/database.db < /data/init.sql &&
+        tail -f /dev/null"
     networks:
       - backend-network
 
@@ -55,14 +55,29 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - backend-network 
-    
+      - backend-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin 
+    volumes:
+      - grafana-data:/var/lib/grafana 
+    networks:
+      - app-network
+    depends_on:
+      - redis  
 
 networks:
-  app-network:  
+  app-network:
     driver: bridge
-  backend-network:  
+  backend-network:
     driver: bridge
 
 volumes:
   db-data:
+  grafana-data:
+
