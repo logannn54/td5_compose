@@ -12,7 +12,3 @@ Dans le répertoire `frontend` (où se trouve le code React), exécutez la comma
 
 `npm install`
 
-Une fois installé il est possible de lancer le frontend avec la commande :
-
-`npm start`
-
